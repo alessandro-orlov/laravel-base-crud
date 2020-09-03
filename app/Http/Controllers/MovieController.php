@@ -90,9 +90,9 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Movie $movie)
     {
-        //
+        return view('edit', compact('movie'));
     }
 
     /**
@@ -102,9 +102,17 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Movie $movie)
     {
-        //
+      // Validazione
+      $request->validate($this->validationData());
+
+      // Metto nella variabile i dati passati dalla pagina 'create' che restituisce un array
+      $requested_info = $request->all();
+
+      $movie->update($requested_info);
+
+      return redirect()->route('index');
     }
 
     /**

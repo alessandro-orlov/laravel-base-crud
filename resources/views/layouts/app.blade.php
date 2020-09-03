@@ -74,6 +74,7 @@
               border: none;
               text-decoration: none;
               border-radius: 3px;
+              cursor: pointer;
             }
             .movie-list-container input[type="submit"].delete {
               background-color: #f72a2a;
