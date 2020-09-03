@@ -60,16 +60,22 @@
               margin-bottom: 40px;
               border: 1px solid #cacaca;
             }
-            .movie-list-container a.small-btn {
+            .movie-list-container .inline-form {
+              display: inline-block;
+            }
+            .movie-list-container a.small-btn,
+            .movie-list-container input[type="submit"].small-btn {
               display: inline-block;
               padding: 4px 7px;
+              font: 400 1em 'Nunito', sans-serif;
               margin: 10px 10px 10px 0;
               background-color: #4fcc4f;
               color: #fff;
+              border: none;
               text-decoration: none;
               border-radius: 3px;
             }
-            .movie-list-container .small-btn.delete {
+            .movie-list-container input[type="submit"].delete {
               background-color: #f72a2a;
             }
 
