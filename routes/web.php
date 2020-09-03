@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', 'MovieController@index')->name('index');
+
+Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::resource('movies', 'MovieController');

@@ -14,8 +14,11 @@ class MovieController extends Controller
      */
     public function index()
     {
+      // $movies = Movie::all();
 
-      $movies = Movie::all();
+      // Inverto l'ordine di visualizzazione dei film:
+      // Ultimo film inserito sarà il primo della lista
+      $movies = Movie::orderBy('created_at', 'desc')->get();
 
       return view('movies', compact('movies'));
 
@@ -28,7 +31,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -39,7 +42,26 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // Validazione
+      $request->validate($this->validationData());
+
+      // Metto nella variabile i dati passati dalla pagina 'create' che restituisce un array
+      $requested_info = $request->all();
+
+      // Creo nuova istanza con dati passati dall'array
+      $movieNew = new Movie;
+      $movieNew->title = $requested_info['title'];
+      $movieNew->year = $requested_info['year'];
+      $movieNew->rating = $requested_info['rating'];
+      $movieNew->description = $requested_info['description'];
+
+      // Salvo l'istanza nel database mySQL
+      $movieNew->save();
+
+
+      $movie = Movie::orderBy('id', 'desc')->first();
+
+      return redirect()->route('movies.show', $movie);
     }
 
     /**
@@ -95,4 +117,15 @@ class MovieController extends Controller
     {
         //
     }
+
+    // Validazione
+    protected function validationData() {
+      return [
+        'title' => 'required|max:255',
+        'year' => 'required|integer|min:1900|max:2020',
+        'description' => 'required',
+        'rating' => 'required|integer|min:1|max:10',
+      ];
+    }
+
 }
