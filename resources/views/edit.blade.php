@@ -20,22 +20,22 @@
 
     <div>
       <label>Titolo</label><br>
-      <input type="text" name="title" value="{{ $movie->title }}" placeholder="Inserisci il titolo del film">
+      <input type="text" name="title" value="{{ old('title') ? old('title') : $movie->title }}" placeholder="Inserisci il titolo del film">
     </div>
     <br>
     <div>
       <label>Anno:</label><br>
-      <input type="text" name="year" value="{{ $movie->year }}" placeholder="inserisci l'anno">
+      <input type="text" name="year" value="{{ old('year') ? old('year') : $movie->year }}" placeholder="inserisci l'anno">
     </div>
     <br>
     <div>
       <label>Rating</label><br>
-      <input type="text" name="rating" value="{{ $movie->rating }}" placeholder="Inserisci il rating">
+      <input type="text" name="rating" value="{{ old('rating') ? old('rating') : $movie->rating }}" placeholder="Inserisci il rating">
     </div>
     <br>
     <div>
       <label>Descrizione</label><br>
-      <textarea name="description" rows="8" cols="100">{{ $movie->description }}</textarea>
+      <textarea name="description" rows="8" cols="100">{{ old('description') ? old('description') : $movie->description }}</textarea>
     </div>
     <br>
     <input type="submit" value="Salva le modifiche">
